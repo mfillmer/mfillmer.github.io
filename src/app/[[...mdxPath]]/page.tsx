@@ -1,8 +1,6 @@
-import { importPage } from "nextra/pages";
+import { generateStaticParamsFor, importPage } from "nextra/pages";
 import { useMDXComponents as getMDXComponents } from "../../mdx-components";
 import { NextPage } from "next";
-
-const Wrapper = getMDXComponents().wrapper;
 
 interface PageProps {
   params: Promise<{
@@ -12,6 +10,17 @@ interface PageProps {
     [key: string]: string | string[] | undefined;
   }>;
 }
+
+export const generateStaticParams = generateStaticParamsFor("mdxPath");
+
+export async function generateMetadata(props: PageProps) {
+  const params = await props.params;
+  const { metadata } = await importPage(params.mdxPath);
+  return metadata;
+}
+
+const Wrapper = getMDXComponents().wrapper;
+
 const Page: NextPage<PageProps> = async (props) => {
   const params = await props.params;
 
