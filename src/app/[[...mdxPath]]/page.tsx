@@ -6,7 +6,7 @@ const Wrapper = getMDXComponents().wrapper;
 
 interface PageProps {
   params: {
-    mdxPath: string[];
+    mdxPath?: string[];
   };
   searchParams: {
     [key: string]: string | string[] | undefined;
