@@ -1,5 +1,5 @@
 import { Footer, Layout, Navbar, ThemeSwitch } from "nextra-theme-blog";
-import { Banner, Head, Search } from "nextra/components";
+import { Head, Search } from "nextra/components";
 import { getPageMap } from "nextra/page-map";
 import "nextra-theme-blog/style.css";
 
@@ -7,27 +7,14 @@ export const metadata = {
   title: "Blog Example",
 };
 
-export default async function RootLayout({ children }) {
-  const banner = (
-    <Banner storageKey="4.0-release">
-      🎉 Nextra 4.0 is released.{" "}
-      <a
-        href="#"
-        style={{
-          textDecoration: "underline",
-          textUnderlinePosition: "from-font",
-        }}
-      >
-        Read more →
-      </a>
-    </Banner>
-  );
-
+export default async function RootLayout({
+  children,
+}: React.PropsWithChildren) {
   return (
     <html lang="en" suppressHydrationWarning>
       <Head backgroundColor={{ dark: "#0f172a", light: "#fefce8" }} />
       <body>
-        <Layout banner={banner}>
+        <Layout>
           <Navbar pageMap={await getPageMap()}>
             <Search />
             <ThemeSwitch />
