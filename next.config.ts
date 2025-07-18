@@ -7,6 +7,11 @@ const withNextra = nextra({
 });
 
 const nextConfig: NextConfig = withNextra({
+  output: 'export',
+  basePath: '/mfillmer.github.io',
+  images: {
+    unoptimized: true,
+  },
   turbopack: {
     resolveAlias: {
       "next-mdx-import-source-file": "/src/mdx-components.tsx",
