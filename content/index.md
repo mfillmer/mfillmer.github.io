@@ -1,3 +1,7 @@
+---
+layout: layout.njk
+---
+
 ![img](https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1d/a1/33/d5/the-port-of-goudes-view.jpg?w=900&h=500&s=1)
 
 # My Awesome Project
