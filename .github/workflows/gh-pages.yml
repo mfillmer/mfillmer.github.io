@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - switch-to-eleventy
 
 jobs:
   build-and-deploy:
