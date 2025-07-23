@@ -2,8 +2,6 @@
 
 # My Awesome Project
 
-
-Change line for testing automatic deployment
 ---
 
 Welcome to the documentation for **My Awesome Project**! This project aims to revolutionize how we handle data processing.
@@ -14,10 +12,10 @@ This project addresses the growing need for efficient and scalable data solution
 
 ### Key Features
 
-* **High Performance**: Designed for speed and efficiency.
-* *Scalability*: Easily handles increasing data volumes.
-* `User-Friendly Interface`: Intuitive design for quick adoption.
-* ~~Secure Data Handling~~: (Future feature - currently under development)
+- **High Performance**: Designed for speed and efficiency.
+- _Scalability_: Easily handles increasing data volumes.
+- `User-Friendly Interface`: Intuitive design for quick adoption.
+- ~~Secure Data Handling~~: (Future feature - currently under development)
 
 ---
 
@@ -34,6 +32,7 @@ To get started with My Awesome Project, follow these simple steps:
     pip install -r requirements.txt
     ```
 3.  **Run the Application**:
+
     ```python
     # main.py
     def run_app():
@@ -42,18 +41,20 @@ To get started with My Awesome Project, follow these simple steps:
     if __name__ == "__main__":
         run_app()
     ```
+
     After running, you should see:
+
     > My Awesome Project is running!
 
 ---
 
 ## Project Team
 
-| Name          | Role               | Contact Email            |
-| :------------ | :----------------- | :----------------------- |
-| Alice Johnson | Project Lead       | alice@example.com        |
-| Bob Williams  | Lead Developer     | bob@example.com          |
-| Carol Davis   | Documentation Specialist | carol@example.com      |
+| Name          | Role                     | Contact Email     |
+| :------------ | :----------------------- | :---------------- |
+| Alice Johnson | Project Lead             | alice@example.com |
+| Bob Williams  | Lead Developer           | bob@example.com   |
+| Carol Davis   | Documentation Specialist | carol@example.com |
 
 ---
 

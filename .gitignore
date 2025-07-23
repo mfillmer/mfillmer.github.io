@@ -20,6 +20,9 @@
 # production
 /build
 
+# eleventy
+/_site
+
 # misc
 .DS_Store
 *.pem
