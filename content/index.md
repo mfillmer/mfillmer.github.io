@@ -63,5 +63,3 @@ To get started with My Awesome Project, follow these simple steps:
 ---
 
 For more information, please visit our [official website](https://www.example.com/my-awesome-project).
-
-![Project Icon](https://via.placeholder.com/150 "A placeholder icon for the project")

@@ -8,6 +8,8 @@ export default async function (eleventyConfig) {
     });
   });
 
+  eleventyConfig.addPassthroughCopy("webcomponents");
+
   return {
     ...eleventyConfig,
     dir: {
