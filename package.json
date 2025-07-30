@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "tsx ./node_modules/.bin/eleventy --config eleventy.config.ts",
-    "serve": "rimraf _site && npm run build -- --serve"
+    "pagefind:index": "pagefind --site _site --glob \"**/*.html\"",
+    "eleventy:build": "tsx ./node_modules/.bin/eleventy --config eleventy.config.ts",
+    "build": "npm run eleventy:build && npm run pagefind:index",
+    "serve": "rimraf _site && npm run build && npm run eleventy:build -- --serve"
   },
   "repository": {
     "type": "git",
