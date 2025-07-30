@@ -1,7 +1,8 @@
+import defineConfig from "11ty.ts";
+import UserConfig from "@11ty/eleventy/UserConfig";
 import { execSync } from "child_process";
 
-/** @param {import("@11ty/eleventy").ThemeConfig} eleventyConfig */
-export default async function (eleventyConfig) {
+export default defineConfig((eleventyConfig: UserConfig) => {
   eleventyConfig.on("eleventy.after", () => {
     execSync(`npx pagefind --site _site --glob \"**/*.html\"`, {
       encoding: "utf-8",
@@ -17,4 +18,4 @@ export default async function (eleventyConfig) {
       output: "_site",
     },
   };
-}
+});
