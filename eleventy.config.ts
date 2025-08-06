@@ -1,8 +1,9 @@
 import defineConfig from "11ty.ts";
-import { execSync } from "child_process";
+import { wikilinksPlugin } from "./lib/wikilinks";
 
 export default defineConfig((eleventyConfig) => {
   eleventyConfig.addPassthroughCopy("webcomponents");
+  eleventyConfig.addPlugin(wikilinksPlugin);
 
   return {
     ...eleventyConfig,
