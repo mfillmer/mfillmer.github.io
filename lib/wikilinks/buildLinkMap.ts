@@ -1,5 +1,5 @@
 import { EleventySuppliedData } from "11ty.ts";
-import { parseLinksFromItemContent } from "./parseLinksFromItemContent";
+import { parseWikiLinksFromItemContent } from "./parseWikiLinksFromItemContent";
 
 type LinkEntry = {
   slug: string;
@@ -13,11 +13,9 @@ type LinkMapValue = {
 };
 
 type LinkMap = Record<string, LinkMapValue>;
+export const NOT_FOUND_PAGE_PATH = "/not-found.html";
 
-export const buildLinkMap = (
-  collectionItems: EleventySuppliedData[],
-  NOT_FOUND_PAGE_PATH = "/not-found.html"
-) => {
+export const buildLinkMap = (collectionItems: EleventySuppliedData[]) => {
   const linkMap: LinkMap = {};
 
   for (const item of collectionItems) {
@@ -29,7 +27,7 @@ export const buildLinkMap = (
   }
 
   for (const item of collectionItems) {
-    const outboundLinkSlugs = parseLinksFromItemContent(item.rawInput);
+    const outboundLinkSlugs = parseWikiLinksFromItemContent(item.rawInput);
     const currentItemSlug = item.fileSlug;
     const currentLinkMapEntry = linkMap[currentItemSlug];
 
@@ -46,6 +44,9 @@ export const buildLinkMap = (
           path: currentLinkMapEntry.path,
         });
       } else {
+        console.warn(
+          `[WARN] "${outboundSlug}" points to ${NOT_FOUND_PAGE_PATH}`
+        );
         currentLinkMapEntry.outboundLinks.push({
           slug: outboundSlug,
           path: NOT_FOUND_PAGE_PATH,
