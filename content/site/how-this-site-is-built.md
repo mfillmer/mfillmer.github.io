@@ -1,19 +1,20 @@
 ---
 layout: layout.njk
 ---
+
 # How this Site is built
 
 ## Tech Stack (with todos)
 
 - [x] Eleventy
   - Plugins
-    - [ ] Markdown Links Converter
-    - [ ] Wikilinks Converter
+    - [x] Markdown Links Converter
+    - [x] Wikilinks Converter
     - [ ] Markdown todo
-    - [ ] Graph View
-    - [ ] Pagefind
+    - [x] Graph View
+    - [x] Pagefind
     - [ ] Sidebar
-    - [ ] Backlinks
+    - [x] Backlinks
     - [ ] STL Support?
 - [x] Github Pages
 - [ ] TailwindCSS

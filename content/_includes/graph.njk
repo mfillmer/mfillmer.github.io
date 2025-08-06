@@ -1,5 +1,14 @@
 {% set linkmap = collections.linkMap %}
-<div>
-  <h2>Graph</h2>
-  {{ linkmap | dump }}
+<h3>Graph View</h3>
+<div is="graph-view" id="graph">
+  <span>loading graph view</span>
 </div>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script type="module" src="/webcomponents/graph-view.js"></script>
+<script>
+  // Fetch the data from the generated asset file
+  fetch('/linkMap.json').then(response => response.json()).then(data => {
+    const graph = document.getElementById('graph');
+    graph.render(data);
+  });
+</script>

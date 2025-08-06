@@ -7,10 +7,9 @@ type LinkEntry = {
   path: string;
 };
 
-type LinkAdjacencyList = Record<string, LinkEntry[]>;
-
 type LinkMapValue = {
   path: string;
+  slug: string;
   outboundLinks: LinkEntry[];
   inboundLinks: LinkEntry[];
 };
@@ -24,6 +23,7 @@ export const buildLinkMap = (collectionItems: EleventySuppliedData[]) => {
 
   for (const item of collectionItems) {
     linkMap[item.fileSlug] = {
+      slug: item.fileSlug,
       path: item.filePathStem || NOT_FOUND_PAGE_PATH,
       outboundLinks: [],
       inboundLinks: [],
@@ -62,13 +62,5 @@ export const buildLinkMap = (collectionItems: EleventySuppliedData[]) => {
   return linkMap;
 };
 
-export const buildLinkAdjacencyList = (linkMap: LinkMap): LinkAdjacencyList => {
-  return Object.fromEntries(
-    Object.entries(linkMap).map(([key, value]) => [
-      key,
-      [...value.outboundLinks, ...value.inboundLinks],
-    ])
-  );
-};
 export const writeToAssets = (json: object) =>
-  writeFileSync("./_site/adjacencyList.json", JSON.stringify(json));
+  writeFileSync("./_site/linkMap.json", JSON.stringify(json));
