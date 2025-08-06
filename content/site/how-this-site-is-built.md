@@ -1,7 +1,3 @@
----
-layout: layout.njk
----
-
 # How this Site is built
 
 ## Tech Stack (with todos)

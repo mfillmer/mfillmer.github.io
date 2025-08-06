@@ -1,7 +1,3 @@
----
-layout: layout.njk
----
-
 # Foam
 
 Foam is a VSCode extension that is similar to Obsidian.md.

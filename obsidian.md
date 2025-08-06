@@ -1,5 +1,1 @@
----
-layout: layout.njk
----
-
 # obsidian

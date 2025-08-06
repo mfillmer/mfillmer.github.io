@@ -1,7 +1,3 @@
----
-layout: layout.njk
----
-
 # Navigation
 
 This site is organized partly as a graph and partly as a tree (which is technically a graph too, but it is special).

@@ -1,7 +1,3 @@
----
-layout: layout.njk
----
-
 # Thoughts
 
 This folder features notes of single thoughts that might be used when writing articles.
