@@ -1,10 +1,13 @@
 import { EleventySuppliedData } from "11ty.ts";
 import { parseWikiLinksFromItemContent } from "./parseWikiLinksFromItemContent";
+import { writeFileSync } from "fs";
 
 type LinkEntry = {
   slug: string;
   path: string;
 };
+
+type LinkAdjacencyList = Record<string, LinkEntry[]>;
 
 type LinkMapValue = {
   path: string;
@@ -58,3 +61,14 @@ export const buildLinkMap = (collectionItems: EleventySuppliedData[]) => {
 
   return linkMap;
 };
+
+export const buildLinkAdjacencyList = (linkMap: LinkMap): LinkAdjacencyList => {
+  return Object.fromEntries(
+    Object.entries(linkMap).map(([key, value]) => [
+      key,
+      [...value.outboundLinks, ...value.inboundLinks],
+    ])
+  );
+};
+export const writeToAssets = (json: object) =>
+  writeFileSync("./_site/adjacencyList.json", JSON.stringify(json));

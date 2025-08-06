@@ -1,14 +1,22 @@
 import { EleventyConfig } from "11ty.ts";
-import { buildLinkMap, LinkMap } from "./buildLinkMap";
+import {
+  buildLinkAdjacencyList,
+  buildLinkMap,
+  LinkMap,
+  writeToAssets,
+} from "./buildLinkMap";
 import { wikilinksTransformer } from "./wikilinksTransformer";
 
 export const wikilinksPlugin = (config: EleventyConfig, options = {}) => {
   let linkMap: LinkMap = {};
   config.addCollection("linkMap", (collectionsApi) => {
     linkMap = buildLinkMap(collectionsApi.getAll());
-    return new Map(Object.entries(linkMap));
+    writeToAssets(buildLinkAdjacencyList(linkMap));
+    return linkMap;
   });
+
   config.addTransform("wikilinks", wikilinksTransformer(linkMap));
-  config.addFilter("mapGet", (map, key) => map.get(key));
+  config.addFilter("mapGet", (map, key) => map[key]);
+
   return config;
 };
