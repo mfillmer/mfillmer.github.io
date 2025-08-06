@@ -13,24 +13,8 @@
 </head>
 
   <body class="prose xl:prose-xl">
-    <div>
-      {% set currentLink = collections.linkMap | mapGet(page.fileSlug) %}
-      
-      <h3>Outgoing Links</h3>
-      <ul>
-        {% for link in currentLink.outboundLinks %}
-          <li><a href="{{ link.path }}">{{ link.slug }}</a></li>  
-          {% endfor %}
-      </ul>
-      <h3>Incoming Links</h3>
-      <ul>
-        {% for link in currentLink.inboundLinks %}
-          <li><a href="{{ link.path }}">{{ link.slug }}</a></li>  
-          {% endfor %}
-      </ul>
-    </div>
-
     <pagefind-search ></pagefind-search>
+    {% include "backlinks.njk" %}
     <article data-pagefind-body>
     {{ content | safe }}
     </article> 
