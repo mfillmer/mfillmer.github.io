@@ -1,12 +1,28 @@
 import { EleventySuppliedData } from "11ty.ts";
 import { parseLinksFromItemContent } from "./parseLinksFromItemContent";
 
-export const buildLinkMap = (collectionItems: EleventySuppliedData[]) => {
-  const linkMap = {};
+type LinkEntry = {
+  slug: string;
+  path: string;
+};
+
+type LinkMapValue = {
+  path: string;
+  outboundLinks: LinkEntry[];
+  inboundLinks: LinkEntry[];
+};
+
+type LinkMap = Record<string, LinkMapValue>;
+
+export const buildLinkMap = (
+  collectionItems: EleventySuppliedData[],
+  NOT_FOUND_PAGE_PATH = "/not-found.html"
+) => {
+  const linkMap: LinkMap = {};
 
   for (const item of collectionItems) {
     linkMap[item.fileSlug] = {
-      path: item.inputPath,
+      path: item.filePathStem || NOT_FOUND_PAGE_PATH,
       outboundLinks: [],
       inboundLinks: [],
     };
@@ -32,7 +48,7 @@ export const buildLinkMap = (collectionItems: EleventySuppliedData[]) => {
       } else {
         currentLinkMapEntry.outboundLinks.push({
           slug: outboundSlug,
-          path: "/not-found.md",
+          path: NOT_FOUND_PAGE_PATH,
         });
       }
     }

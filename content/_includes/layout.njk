@@ -15,6 +15,7 @@
   <body class="prose xl:prose-xl">
     <div>
       {% set currentLink = collections.linkMap | mapGet(page.fileSlug) %}
+      {{ currentLink | dump }}
       <h3>Outgoing Links</h3>
       <ul>
         {% for link in currentLink.outboundLinks %}
