@@ -19,12 +19,19 @@
     <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
     <script defer src="/webcomponents/pagefind-search.js"></script>
   </head>
-  <body class="prose xl:prose-xl">
-    <pagefind-search></pagefind-search>
-    {% include "backlinks.njk" %}
-    {% include "graph.njk" %}
-    <article data-pagefind-body>
-      {{ content | safe }}
-    </article>
+  <body>
+    <div class="grid">
+      <pagefind-search class="col-span-2 col-start-2 row-start-1 "></pagefind-search>
+      <div class="col-start-1 row-start-2 row-span-full">
+        Sidebar
+      </div>
+      <div class="col-start-3 row-span-full">
+        <div>{% include "backlinks.njk" %}</div>
+        <div>{% include "graph.njk" %}</div>
+      </div>
+      <article class="col-start-2 row-start-2 prose xl:prose-xl" data-pagefind-body>
+        {{ content | safe }}
+      </article>
+    </div>
   </body>
 </html>
