@@ -2,6 +2,12 @@ class GraphView extends HTMLDivElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
+    fetch("/linkMap.json")
+      .then((response) => response.json())
+      .then((data) => {
+        const graph = document.getElementById("graph");
+        graph.render(data);
+      });
   }
 
   connectedCallback() {

@@ -1,1 +1,1 @@
-module.exports = "layout.njk";
+module.exports = "layout.11ty.tsx";

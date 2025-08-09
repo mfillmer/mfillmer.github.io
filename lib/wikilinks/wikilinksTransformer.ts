@@ -2,8 +2,6 @@ import { LinkMap, NOT_FOUND_PAGE_PATH } from "./buildLinkMap";
 import { parseWikiLinksFromItemContent } from "./parseWikiLinksFromItemContent";
 
 export const wikilinksTransformer = (linkMap: LinkMap) => (content: string) => {
-  console.log("transforming wikilinks");
-
   let _content = content;
   const wikiLinkSlugs = parseWikiLinksFromItemContent(content);
 

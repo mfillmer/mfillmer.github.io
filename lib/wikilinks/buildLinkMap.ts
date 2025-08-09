@@ -16,7 +16,7 @@ type LinkMapValue = {
 
 export type LinkMap = Record<string, LinkMapValue>;
 
-export const NOT_FOUND_PAGE_PATH = "/not-found.html";
+export const NOT_FOUND_PAGE_PATH = "/not-found";
 
 export const buildLinkMap = (collectionItems: EleventySuppliedData[]) => {
   const linkMap: LinkMap = {};
