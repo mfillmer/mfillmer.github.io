@@ -3,7 +3,6 @@ import { parseWikiLinksFromItemContent } from "./parseWikiLinksFromItemContent";
 
 export const wikilinksTransformer = () => (content: string) => {
   const linkMap: LinkMap = JSON.parse(loadFromAssets("linkMap.json"));
-  console.log(linkMap);
   let _content = content;
   const wikiLinkSlugs = parseWikiLinksFromItemContent(content);
   for (const slug of wikiLinkSlugs) {
