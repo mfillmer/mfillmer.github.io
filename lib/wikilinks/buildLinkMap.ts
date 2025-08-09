@@ -1,6 +1,6 @@
 import { EleventySuppliedData } from "11ty.ts";
 import { parseWikiLinksFromItemContent } from "./parseWikiLinksFromItemContent";
-import { writeFileSync } from "fs";
+import { readFileSync, writeFileSync } from "fs";
 
 type LinkEntry = {
   slug: string;
@@ -64,3 +64,7 @@ export const buildLinkMap = (collectionItems: EleventySuppliedData[]) => {
 
 export const writeToAssets = (json: object) =>
   writeFileSync("./_site/linkMap.json", JSON.stringify(json));
+
+export const loadFromAssets = (filename: string) => {
+  return readFileSync("./_site/" + filename, "utf-8");
+};

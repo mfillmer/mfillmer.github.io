@@ -12,8 +12,7 @@ export const wikilinksPlugin = (config: EleventyConfig, options = {}) => {
     return linkMap;
   });
 
-  config.addTransform("wikilinks", wikilinksTransformer(linkMap));
-  config.addFilter("mapGet", (map, key) => map[key]);
+  config.addTransform("wikilinks", wikilinksTransformer());
 
   return config;
 };
