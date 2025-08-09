@@ -46,3 +46,5 @@ next-env.d.ts
 
 # nextra
 _pagefind/
+*storybook.log
+storybook-static
