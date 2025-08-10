@@ -13,4 +13,9 @@
     - [x] Backlinks
     - [ ] STL Support?
 - [x] Github Pages
-- [ ] TailwindCSS
+- [x] TailwindCSS
+
+### Thoughts on this site
+
+- [[Design]]
+- [[Frameworks]]
