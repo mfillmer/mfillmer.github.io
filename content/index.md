@@ -4,6 +4,8 @@
 
 ---
 
+> for now, this is just a playground for setting up a site with eleventy and other frameworks from scratch.
+
 Welcome to the documentation for **My Awesome Project**! This project aims to revolutionize how we handle data processing.
 
 ## About This Project
