@@ -1,6 +1,7 @@
 import { EleventySuppliedData } from "11ty.ts";
 import { parseWikiLinksFromItemContent } from "./parseWikiLinksFromItemContent";
 import { readFileSync, writeFileSync } from "fs";
+import { consoleWarn } from "./utils";
 
 type LinkEntry = {
   slug: string;
@@ -48,9 +49,7 @@ export const buildLinkMap = (collectionItems: EleventySuppliedData[]) => {
           path: currentLinkMapEntry.path,
         });
       } else {
-        console.warn(
-          `[WARN] "${outboundSlug}" points to ${NOT_FOUND_PAGE_PATH}`
-        );
+        consoleWarn(`"${outboundSlug}" points to ${NOT_FOUND_PAGE_PATH}`);
         currentLinkMapEntry.outboundLinks.push({
           slug: outboundSlug,
           path: NOT_FOUND_PAGE_PATH,
