@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Backlinks } from "../../components/Backlinks.11ty";
 import { EleventyData } from "../../components/eleventyTypes.11ty";
 import { GraphView } from "../../components/GraphView.11ty";
