@@ -27,8 +27,8 @@ const Layout = (props: EleventyData) => {
           href="https://unpkg.com/tailwindcss@1.4.6/dist/utilities.min.css"
         />
         <link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
-        <script defer src="/webcomponents/pagefind-search.js" />
-        <script type="module" src="/webcomponents/graph-view.js"></script>
+        <script defer src="/clientsidejs/pagefind-search.js" />
+        <script type="module" src="/clientsidejs/graph-view.js"></script>
       </head>
       <body>
         <div className="grid">
@@ -50,7 +50,7 @@ const Layout = (props: EleventyData) => {
           ></article>
         </div>
       </body>
-      <script type="module" src="/webcomponents/sidebar.tsx"></script>
+      <script type="module" src="/clientsidejs/sidebar.tsx"></script>
     </html>
   );
 };

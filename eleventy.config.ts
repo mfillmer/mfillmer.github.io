@@ -5,7 +5,7 @@ import { renderToStaticMarkup } from "react-dom/server";
 import EleventyVitePlugin from "@11ty/eleventy-plugin-vite";
 
 export default defineConfig((eleventyConfig) => {
-  eleventyConfig.addPassthroughCopy("webcomponents");
+  eleventyConfig.addPassthroughCopy("clientsidejs");
   eleventyConfig.addPlugin(wikilinksPlugin);
   eleventyConfig.addTemplateFormats("11ty.jsx,11ty.tsx");
   eleventyConfig.addExtension(["11ty.jsx", "11ty.ts", "11ty.tsx"], {
