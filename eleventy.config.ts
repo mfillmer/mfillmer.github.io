@@ -6,6 +6,7 @@ import EleventyVitePlugin from "@11ty/eleventy-plugin-vite";
 
 export default defineConfig((eleventyConfig) => {
   eleventyConfig.addPassthroughCopy("clientsidejs");
+  eleventyConfig.addPassthroughCopy("css");
   eleventyConfig.addPlugin(wikilinksPlugin);
   eleventyConfig.addTemplateFormats("11ty.jsx,11ty.tsx");
   eleventyConfig.addExtension(["11ty.jsx", "11ty.ts", "11ty.tsx"], {
@@ -18,8 +19,6 @@ export default defineConfig((eleventyConfig) => {
     },
   });
   eleventyConfig.addPlugin(EleventyVitePlugin);
-
-  eleventyConfig.addBundle("js");
 
   return {
     ...eleventyConfig,

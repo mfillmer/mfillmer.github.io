@@ -31,8 +31,6 @@ class GraphView extends HTMLDivElement {
         }))
     );
 
-    console.log({ nodes, links });
-
     const simulation = d3
       .forceSimulation(nodes)
       .force(

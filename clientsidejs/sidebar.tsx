@@ -1,10 +1,9 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-const Sidebar = () => <>Sidebar from React</>;
+const Sidebar = () => <div className="font-bold">Sidebar from React</div>;
 
 const domNode = document.querySelector("#sidebar");
 if (domNode) {
-  console.log("domNode is set");
   const root = createRoot(domNode);
   root.render(<Sidebar />);
 }

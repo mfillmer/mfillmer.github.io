@@ -10,28 +10,14 @@ const Layout = (props: EleventyData) => {
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>{props.title || props.page.fileSlug}</title>
-        <link
-          rel="stylesheet"
-          href="https://unpkg.com/tailwindcss@1.4.6/dist/base.min.css"
-        />
-        <link
-          rel="stylesheet"
-          href="https://unpkg.com/tailwindcss@1.4.6/dist/components.min.css"
-        />
-        <link
-          rel="stylesheet"
-          href="https://unpkg.com/@tailwindcss/typography@0.1.2/dist/typography.min.css"
-        />
-        <link
-          rel="stylesheet"
-          href="https://unpkg.com/tailwindcss@1.4.6/dist/utilities.min.css"
-        />
         <link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
+        <link rel="stylesheet" href="/css/global.css" />
         <script defer src="/clientsidejs/pagefind-search.js" />
         <script type="module" src="/clientsidejs/graph-view.js"></script>
       </head>
       <body>
         <div className="grid">
+          {/* @ts-ignore */}
           <pagefind-search class="col-span-2 col-start-2 row-start-1 "></pagefind-search>
           <div
             id="sidebar"
@@ -44,7 +30,7 @@ const Layout = (props: EleventyData) => {
             <GraphView />
           </div>
           <article
-            className="col-start-2 row-start-2 prose xl:prose-xl"
+            className="col-start-2 row-start-1 prose xl:prose-xl"
             data-pagefind-body
             dangerouslySetInnerHTML={{ __html: props.content }}
           ></article>
