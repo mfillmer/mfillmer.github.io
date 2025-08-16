@@ -2,6 +2,7 @@ import defineConfig from "11ty.ts";
 import { wikilinksPlugin } from "./lib/wikilinks";
 import "tsx/esm";
 import { renderToStaticMarkup } from "react-dom/server";
+import EleventyVitePlugin from "@11ty/eleventy-plugin-vite";
 
 export default defineConfig((eleventyConfig) => {
   eleventyConfig.addPassthroughCopy("webcomponents");
@@ -16,6 +17,9 @@ export default defineConfig((eleventyConfig) => {
       };
     },
   });
+  eleventyConfig.addPlugin(EleventyVitePlugin);
+
+  eleventyConfig.addBundle("js");
 
   return {
     ...eleventyConfig,

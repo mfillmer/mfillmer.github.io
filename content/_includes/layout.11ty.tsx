@@ -33,7 +33,10 @@ const Layout = (props: EleventyData) => {
       <body>
         <div className="grid">
           <pagefind-search class="col-span-2 col-start-2 row-start-1 "></pagefind-search>
-          <div className="col-start-1 row-start-2 row-span-full min-w-40">
+          <div
+            id="sidebar"
+            className="col-start-1 row-start-2 row-span-full min-w-40"
+          >
             Sidebar
           </div>
           <div className="col-start-3 row-span-full">
@@ -47,6 +50,7 @@ const Layout = (props: EleventyData) => {
           ></article>
         </div>
       </body>
+      <script type="module" src="/webcomponents/sidebar.tsx"></script>
     </html>
   );
 };
