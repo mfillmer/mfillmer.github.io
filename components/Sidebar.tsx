@@ -1,16 +1,37 @@
+import { navigate } from "@/lib/utils";
+import { Brain, Hammer, Home } from "lucide-react";
+import React from "react";
+import { Button } from "./ui/button";
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarGroup,
+  SidebarGroupContent,
   SidebarGroupLabel,
   SidebarHeader,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
 } from "./ui/sidebar";
-import React from "react";
-import { Button } from "./ui/button";
-import { navigate } from "@/lib/utils";
-import { HomeIcon } from "lucide-react";
 
+const items = [
+  {
+    title: "Home",
+    url: "/",
+    icon: Home,
+  },
+  {
+    title: "Thoughts",
+    url: "/thoughts/index.html",
+    icon: Brain,
+  },
+  {
+    title: "How this Site is built",
+    url: "/site/how-this-site-is-built",
+    icon: Hammer,
+  },
+];
 export function AppSidebar() {
   return (
     <Sidebar>
@@ -18,18 +39,29 @@ export function AppSidebar() {
         <Button
           onClick={() => navigate("/")}
           variant="secondary"
-          size="icon"
-          className="size-8"
+          className="w-full text-center"
         >
-          <HomeIcon />
+          <h2>My Digital Playground</h2>
         </Button>
-        <h2>My Digital Playground</h2>
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Content</SidebarGroupLabel>
+          <SidebarGroupLabel>Content</SidebarGroupLabel>{" "}
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {items.map((item) => (
+                <SidebarMenuItem key={item.title}>
+                  <SidebarMenuButton asChild>
+                    <a href={item.url}>
+                      <item.icon />
+                      <span>{item.title}</span>
+                    </a>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
         </SidebarGroup>
-        <SidebarGroup />
       </SidebarContent>
       <SidebarFooter />
     </Sidebar>

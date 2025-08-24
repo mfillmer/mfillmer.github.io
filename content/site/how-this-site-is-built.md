@@ -7,9 +7,9 @@
     - [x] Markdown Links Converter
     - [x] Wikilinks Converter
     - [ ] Markdown todo
-    - [x] Graph View
+    - [?] Graph View
     - [x] Pagefind
-    - [ ] Sidebar
+    - [x] Sidebar
     - [x] Backlinks
     - [ ] STL Support?
 - [x] Github Pages
@@ -19,3 +19,4 @@
 
 - [[Design]]
 - [[Frameworks]]
+- [[Layout]]

@@ -7,7 +7,7 @@ The goal of this layout design is to support different kinds of navigation style
 The site is currently being built and these are the main component layouts that are developed right now:
 
 - [x] Article view in the center
-- [ ] Sidebar for hierarchical navigation
+- [x] Sidebar for hierarchical navigation
 - [ ] menu bar (header) for search and some default links
 - [ ] Backlinks Sections for graph based navigation
 - [ ] (maybe) a place for ads that are not annoying to the reader
