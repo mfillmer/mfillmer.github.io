@@ -2,7 +2,6 @@ import React from "react";
 import { Backlinks } from "../../components/Backlinks.11ty";
 import { EleventyData } from "../../components/eleventyTypes.11ty";
 import { GraphView } from "../../components/GraphView.11ty";
-import { Sidebar } from "../../components/Sidebar";
 
 const Layout = (props: EleventyData) => {
   return (
@@ -22,7 +21,6 @@ const Layout = (props: EleventyData) => {
           <pagefind-search class="col-span-2 col-start-2 row-start-1 "></pagefind-search>
           <div className="col-start-1 row-start-2 row-span-full min-w-40">
             <div id="sidebar">Sidebar</div>
-            <Sidebar str="server" />
           </div>
           <div className="col-start-3 row-span-full">
             <Backlinks {...props} />
