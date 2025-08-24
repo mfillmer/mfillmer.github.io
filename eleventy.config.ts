@@ -1,10 +1,12 @@
-import defineConfig from "11ty.ts";
+import defineEleventyConfig from "11ty.ts";
 import { wikilinksPlugin } from "./lib/wikilinks";
 import "tsx/esm";
 import { renderToStaticMarkup } from "react-dom/server";
 import EleventyVitePlugin from "@11ty/eleventy-plugin-vite";
+import { defineConfig as defineViteConfig } from "vite";
+import path from "path";
 
-export default defineConfig((eleventyConfig) => {
+export default defineEleventyConfig((eleventyConfig) => {
   eleventyConfig.addPassthroughCopy("clientsidejs");
   eleventyConfig.addPassthroughCopy("components");
   eleventyConfig.addPassthroughCopy("lib");
@@ -20,7 +22,15 @@ export default defineConfig((eleventyConfig) => {
       };
     },
   });
-  eleventyConfig.addPlugin(EleventyVitePlugin);
+  eleventyConfig.addPlugin(EleventyVitePlugin, {
+    viteOptions: defineViteConfig({
+      resolve: {
+        alias: {
+          "@": path.resolve(__dirname, "./"),
+        },
+      },
+    }),
+  });
 
   return {
     ...eleventyConfig,
