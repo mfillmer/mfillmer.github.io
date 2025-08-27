@@ -1,6 +1,6 @@
 import { navigate } from "@/lib/utils";
 import { Brain, Hammer, Home } from "lucide-react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import {
   Sidebar,
@@ -14,6 +14,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "./ui/sidebar";
+import { Menubar } from "./ui/menubar";
 
 const items = [
   {
@@ -34,7 +35,7 @@ const items = [
 ];
 export function AppSidebar() {
   return (
-    <Sidebar>
+    <Sidebar className="max-w-64 top-menubar-height-mobile sm:top-menubar-height">
       <SidebarHeader className="flex flex-row items-baseline">
         <Button
           onClick={() => navigate("/")}

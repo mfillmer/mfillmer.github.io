@@ -2,6 +2,7 @@ import React from "react";
 import { Backlinks } from "../../components/Backlinks.11ty";
 import { EleventyData } from "../../components/eleventyTypes.11ty";
 import { GraphView } from "../../components/GraphView.11ty";
+import { SidebarInset } from "../../components/ui/sidebar";
 
 const Layout = (props: EleventyData) => {
   return (
@@ -16,24 +17,32 @@ const Layout = (props: EleventyData) => {
         <script type="module" src="/clientsidejs/graph-view.js"></script>
       </head>
       <body>
-        <div className="grid">
-          {/* @ts-ignore */}
-          <pagefind-search class="col-span-2 col-start-2 row-start-1 "></pagefind-search>
-          <div className="col-start-1 row-start-2 row-span-full min-w-40">
+        <div className="relative grid grid-flow-row-dense columns-3">
+          <div className="col-start-1 row-start-2 ">
             <div id="sidebar">Sidebar</div>
           </div>
-          <div className="col-start-3 row-span-full">
+          <div
+            id="menubar"
+            className="sticky top-0 z-10 w-full col-span-3 col-start-1 row-start-1"
+          >
+            {/* @ts-ignore */}
+            <pagefind-search></pagefind-search>
+          </div>
+          <div className="col-start-3 row-start-2 overflow-hidden">
             <Backlinks {...props} />
             <GraphView />
           </div>
-          <article
-            className="col-start-2 row-start-1 prose xl:prose-xl"
-            data-pagefind-body
-            dangerouslySetInnerHTML={{ __html: props.content }}
-          ></article>
+          <SidebarInset>
+            <article
+              className="min-w-0 col-start-2 row-start-2 prose xl:prose-xl"
+              data-pagefind-body
+              dangerouslySetInnerHTML={{ __html: props.content }}
+            ></article>
+          </SidebarInset>
         </div>
       </body>
       <script type="module" src="/clientsidejs/sidebar.tsx"></script>
+      <script type="module" src="/clientsidejs/menubar.tsx"></script>
     </html>
   );
 };
