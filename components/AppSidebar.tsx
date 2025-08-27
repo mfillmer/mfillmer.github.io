@@ -36,15 +36,6 @@ const items = [
 export function AppSidebar() {
   return (
     <Sidebar className="max-w-64 top-menubar-height-mobile sm:top-menubar-height">
-      <SidebarHeader className="flex flex-row items-baseline">
-        <Button
-          onClick={() => navigate("/")}
-          variant="secondary"
-          className="w-full text-center"
-        >
-          <h2>My Digital Playground</h2>
-        </Button>
-      </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel>Content</SidebarGroupLabel>{" "}
