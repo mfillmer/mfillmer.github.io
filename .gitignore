@@ -48,3 +48,5 @@ next-env.d.ts
 _pagefind/
 *storybook.log
 storybook-static
+
+.11ty-vite

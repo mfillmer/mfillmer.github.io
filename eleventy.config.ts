@@ -5,6 +5,8 @@ import { renderToStaticMarkup } from "react-dom/server";
 import EleventyVitePlugin from "@11ty/eleventy-plugin-vite";
 import { defineConfig as defineViteConfig } from "vite";
 import path from "path";
+import { execSync } from "child_process";
+import { viteStaticCopy } from "vite-plugin-static-copy";
 
 export default defineEleventyConfig((eleventyConfig) => {
   eleventyConfig.addPassthroughCopy("clientsidejs");
@@ -22,6 +24,9 @@ export default defineEleventyConfig((eleventyConfig) => {
       };
     },
   });
+  eleventyConfig.on("eleventy.after", () => {
+    execSync("npm run pagefind:index");
+  });
   eleventyConfig.addPlugin(EleventyVitePlugin, {
     viteOptions: defineViteConfig({
       resolve: {
@@ -29,6 +34,14 @@ export default defineEleventyConfig((eleventyConfig) => {
           "@": path.resolve(__dirname, "./"),
         },
       },
+      plugins: [
+        viteStaticCopy({
+          targets: [
+            { src: "linkMap.json", dest: "." },
+            { src: "pagefind", dest: "." },
+          ],
+        }),
+      ],
     }),
   });
 
