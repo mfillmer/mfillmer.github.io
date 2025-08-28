@@ -7,7 +7,7 @@ const domNode = document.querySelector("#sidebar");
 if (domNode) {
   const root = createRoot(domNode);
   root.render(
-    <SidebarProvider open>
+    <SidebarProvider>
       <AppSidebar />
       <SidebarTrigger />
     </SidebarProvider>

@@ -35,7 +35,7 @@ const items = [
 ];
 export function AppSidebar() {
   return (
-    <Sidebar className="max-w-64 top-menubar-height-mobile sm:top-menubar-height">
+    <Sidebar className="max-w-64 top-menubar-height-mobile md:top-menubar-height">
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel>Content</SidebarGroupLabel>{" "}
