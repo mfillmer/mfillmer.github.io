@@ -1,14 +1,23 @@
-import { LinkMap, loadFromAssets, NOT_FOUND_PAGE_PATH } from "./buildLinkMap";
-import { parseWikiLinksFromItemContent } from "./parseWikiLinksFromItemContent";
+import { loadFromAssets } from "./utils";
+import {
+  NOT_FOUND_PAGE_PATH,
+  parseWikiLinks,
+} from "./parseWikiLinksFromItemContent";
 import { consoleLog } from "./utils";
+import { LinkMap } from "./types";
 
 export const wikilinksTransformer = () => (content: string) => {
   const linkMap: LinkMap = JSON.parse(loadFromAssets("linkMap.json"));
   let _content = content;
-  const wikiLinkSlugs = parseWikiLinksFromItemContent(content);
+  const wikiLinkSlugs = parseWikiLinks(content);
+
   for (const slug of wikiLinkSlugs) {
-    const href = linkMap[slug]?.path || NOT_FOUND_PAGE_PATH;
+    const linkMapEntry = Object.values(linkMap).find(
+      (mapItem) => mapItem.label === slug
+    );
+    const href = linkMapEntry?.target || NOT_FOUND_PAGE_PATH;
     consoleLog(`transforming [[${slug}]], set target to ${href}`);
+
     const linkTag = `<a href="${href}">${slug}</a>`;
     _content = _content.replaceAll(`[[${slug}]]`, linkTag);
   }

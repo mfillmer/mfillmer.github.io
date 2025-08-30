@@ -1,5 +1,6 @@
 import { EleventyConfig } from "11ty.ts";
-import { buildLinkMap, LinkMap, writeToAssets } from "./buildLinkMap";
+import { buildLinkMap, LinkMap } from "./buildLinkMap";
+import { writeToAssets } from "./utils";
 import { wikilinksTransformer } from "./wikilinksTransformer";
 
 export const wikilinksPlugin = (config: EleventyConfig, options = {}) => {

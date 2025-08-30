@@ -1,69 +1,46 @@
 import { EleventySuppliedData } from "11ty.ts";
-import { parseWikiLinksFromItemContent } from "./parseWikiLinksFromItemContent";
-import { readFileSync, writeFileSync } from "fs";
-import { consoleWarn } from "./utils";
-
-type LinkEntry = {
-  slug: string;
-  path: string;
-};
-
-type LinkMapValue = {
-  path: string;
-  slug: string;
-  outboundLinks: LinkEntry[];
-  inboundLinks: LinkEntry[];
-};
-
-export type LinkMap = Record<string, LinkMapValue>;
-
-export const NOT_FOUND_PAGE_PATH = "/not-found";
+import { getLinkEntries } from "./parseWikiLinksFromItemContent";
+import { LinkMap } from "./types";
 
 export const buildLinkMap = (collectionItems: EleventySuppliedData[]) => {
-  const linkMap: LinkMap = {};
+  const linkMap = initializeLinkMap(collectionItems);
 
   for (const item of collectionItems) {
-    linkMap[item.fileSlug] = {
-      slug: item.fileSlug,
-      path: item.filePathStem || NOT_FOUND_PAGE_PATH,
-      outboundLinks: [],
-      inboundLinks: [],
-    };
-  }
+    const currentLinkMapEntry = linkMap[item.filePathStem];
 
-  for (const item of collectionItems) {
-    const outboundLinkSlugs = parseWikiLinksFromItemContent(item.rawInput);
-    const currentItemSlug = item.fileSlug;
-    const currentLinkMapEntry = linkMap[currentItemSlug];
+    const linkEntries = getLinkEntries(item, linkMap);
 
-    for (const outboundSlug of outboundLinkSlugs) {
-      const outboundLinkMapEntry = linkMap[outboundSlug];
+    currentLinkMapEntry.outboundLinks = linkEntries;
 
-      if (!!outboundLinkMapEntry) {
-        currentLinkMapEntry.outboundLinks.push({
-          slug: outboundSlug,
-          path: outboundLinkMapEntry.path,
-        });
-        outboundLinkMapEntry.inboundLinks.push({
-          slug: currentItemSlug,
-          path: currentLinkMapEntry.path,
-        });
-      } else {
-        consoleWarn(`"${outboundSlug}" points to ${NOT_FOUND_PAGE_PATH}`);
-        currentLinkMapEntry.outboundLinks.push({
-          slug: outboundSlug,
-          path: NOT_FOUND_PAGE_PATH,
+    linkEntries.forEach((link) => {
+      const targetLinkEntry = linkMap[link.target];
+      if (targetLinkEntry) {
+        targetLinkEntry.inboundLinks.push({
+          label: item.fileSlug,
+          target: item.filePathStem,
         });
       }
-    }
+    });
   }
 
   return linkMap;
 };
 
-export const writeToAssets = (json: object) =>
-  writeFileSync("./_site/linkMap.json", JSON.stringify(json));
-
-export const loadFromAssets = (filename: string) => {
-  return readFileSync("./_site/" + filename, "utf-8");
+const initializeLinkMap = (
+  collectionItems: EleventySuppliedData[]
+): LinkMap => {
+  return collectionItems
+    .map((item) => ({
+      label: item.fileSlug,
+      target: item.filePathStem,
+      outboundLinks: [],
+      inboundLinks: [],
+    }))
+    .reduce(
+      (map, item) => ({
+        ...map,
+        [item.target]: item,
+      }),
+      {}
+    );
 };

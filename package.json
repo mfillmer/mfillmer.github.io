@@ -7,7 +7,7 @@
     "eleventy:build": "tsx ./node_modules/.bin/eleventy --config eleventy.config.ts",
     "prebuild": "rimraf _site",
     "build": "npm run eleventy:build",
-    "serve": "npm run build -- --serve",
+    "serve": "npm run eleventy:build -- --serve",
     "storybook:serve": "storybook dev -p 6006",
     "storybook:build": "storybook build"
   },
@@ -42,7 +42,8 @@
     "slugify": "^1.6.6",
     "tailwind-merge": "^3.3.1",
     "tailwindcss": "^4.1.12",
-    "tw-animate-css": "^1.3.7"
+    "tw-animate-css": "^1.3.7",
+    "xmldom": "^0.6.0"
   },
   "devDependencies": {
     "@storybook/html-vite": "^9.1.1",
@@ -53,6 +54,7 @@
     "@types/node": "^24.1.0",
     "@types/react": "^19.1.9",
     "@types/react-dom": "^19.1.7",
+    "@types/xmldom": "^0.1.34",
     "pagefind": "^1.3.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
