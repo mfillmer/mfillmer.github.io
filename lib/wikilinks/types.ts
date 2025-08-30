@@ -5,7 +5,7 @@ export type LinkEntry = {
 
 export type LinkMapValue = LinkEntry & {
   outboundLinks: LinkEntry[];
-  inboundLinks: LinkEntry[];
+  inboundLinks: Record<string, LinkEntry>;
 };
 
 export type LinkMap = Record<string, LinkMapValue>;

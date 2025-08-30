@@ -15,10 +15,10 @@ export const buildLinkMap = (collectionItems: EleventySuppliedData[]) => {
     linkEntries.forEach((link) => {
       const targetLinkEntry = linkMap[link.target];
       if (targetLinkEntry) {
-        targetLinkEntry.inboundLinks.push({
+        targetLinkEntry.inboundLinks[item.filePathStem] = {
           label: item.fileSlug,
           target: item.filePathStem,
-        });
+        };
       }
     });
   }
@@ -34,7 +34,7 @@ const initializeLinkMap = (
       label: item.fileSlug,
       target: item.filePathStem,
       outboundLinks: [],
-      inboundLinks: [],
+      inboundLinks: {},
     }))
     .reduce(
       (map, item) => ({

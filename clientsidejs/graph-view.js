@@ -18,16 +18,16 @@ class GraphView extends HTMLDivElement {
 
   render(linkMap) {
     const nodes = Object.values(linkMap).map((item) => ({
-      id: item.slug,
+      id: item.target,
       ...item,
     }));
 
     const links = Object.values(linkMap).flatMap((entry) =>
       entry.outboundLinks
-        .filter((link) => link.slug in linkMap)
+        .filter((link) => link.target in linkMap)
         .map((link) => ({
-          source: entry.slug,
-          target: link.slug,
+          source: entry.target,
+          target: link.target,
         }))
     );
 
@@ -62,11 +62,11 @@ class GraphView extends HTMLDivElement {
 
     node
       .append("text")
-      .text((d) => d.id)
+      .text((d) => d.label)
       .attr("x", 12)
       .attr("y", 3);
 
-    node.on("click", (_, data) => (document.location.pathname = data.path));
+    node.on("click", (_, data) => (document.location.pathname = data.target));
 
     simulation.on("tick", () => {
       link

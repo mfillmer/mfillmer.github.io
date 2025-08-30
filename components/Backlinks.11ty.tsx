@@ -1,24 +1,11 @@
 import React, { useState } from "react";
 import { EleventyData } from "./eleventyTypes.11ty";
 import { twMerge } from "tailwind-merge";
-
-type LinkEntry = {
-  slug: string;
-  path: string;
-};
-
-type LinkMapValue = {
-  path: string;
-  slug: string;
-  outboundLinks: LinkEntry[];
-  inboundLinks: LinkEntry[];
-};
-
-export type LinkMap = Record<string, LinkMapValue>;
+import { LinkEntry, LinkMap } from "../lib/wikilinks/types";
 
 const Link = (props: LinkEntry) => (
   <li>
-    <a href={props.path}>{props.slug}</a>
+    <a href={props.target}>{props.label}</a>
   </li>
 );
 
@@ -28,7 +15,7 @@ const LinkList = (props: { title: string; links?: LinkEntry[] }) => (
     {props.links && props.links.length ? (
       <ul>
         {props.links.map((link) => (
-          <Link key={link.slug} {...link} />
+          <Link key={link.target} {...link} />
         ))}
       </ul>
     ) : (
@@ -38,17 +25,18 @@ const LinkList = (props: { title: string; links?: LinkEntry[] }) => (
 );
 
 export const Backlinks = (props: EleventyData & { className?: string }) => {
-  const fileSlug = props.page.fileSlug;
+  const linkMapKey = props.page.filePathStem;
   const linkMap: LinkMap | undefined = props.collections.linkMap;
 
-  const currentLink = linkMap?.[fileSlug];
-
-  const [counter, setCounter] = useState(0);
+  const currentLink = linkMap?.[linkMapKey];
 
   return (
     <div className={twMerge("prose", props.className)}>
       <LinkList title="Outgoing Links" links={currentLink?.outboundLinks} />
-      <LinkList title="Incoming Links" links={currentLink?.inboundLinks} />
+      <LinkList
+        title="Incoming Links"
+        links={Object.values(currentLink?.inboundLinks ?? {})}
+      />
     </div>
   );
 };
