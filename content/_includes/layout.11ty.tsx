@@ -37,13 +37,13 @@ const Layout = (props: EleventyData) => {
           <div className="col-start-1 row-start-1 ">
             <div id="sidebar">Sidebar</div>
           </div>
-          <div className="col-start-3 row-start-1 overflow-hidden">
+          <div className="col-start-3 row-start-1 px-2 py-4 space-y-8 overflow-hidden">
             <Backlinks {...props} />
             <GraphView />
           </div>
           <SidebarInset>
             <article
-              className="min-w-0 col-start-2 row-start-1 prose xl:prose-xl"
+              className="min-w-0 col-start-2 row-start-1 px-2 py-4 prose xl:prose-xl"
               data-pagefind-body
               dangerouslySetInnerHTML={{ __html: props.content }}
             ></article>

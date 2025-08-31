@@ -19,7 +19,7 @@ const LinkList = (props: { title: string; links?: LinkEntry[] }) => (
         ))}
       </ul>
     ) : (
-      <span className="italic">No links found</span>
+      <span className="italic">No entries</span>
     )}
   </>
 );
