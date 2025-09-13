@@ -41,13 +41,12 @@ const Layout = (props: EleventyData) => {
             <Backlinks {...props} />
             <GraphView />
           </div>
-          <SidebarInset>
-            <article
-              className="min-w-0 col-start-2 row-start-1 px-2 py-4 prose xl:prose-xl"
-              data-pagefind-body
-              dangerouslySetInnerHTML={{ __html: props.content }}
-            ></article>
-          </SidebarInset>
+
+          <article
+            className="min-w-0 col-start-2 row-start-1 px-2 py-4 prose xl:prose-xl"
+            data-pagefind-body
+            dangerouslySetInnerHTML={{ __html: props.content }}
+          ></article>
         </div>
       </body>
       <script type="module" src="/clientsidejs/sidebar.tsx"></script>
