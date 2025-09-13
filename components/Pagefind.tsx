@@ -23,7 +23,7 @@ export const Pagefind = () => {
       }
       try {
         const pagefind = await import(
-          // @ts-ignore
+          // @ts-expect-error pagefind.js is an external resource
           '/pagefind/pagefind.js'
         )
         await pagefind.options({

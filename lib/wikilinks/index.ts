@@ -1,9 +1,10 @@
 import { EleventyConfig } from '11ty.ts'
-import { buildLinkMap, LinkMap } from './buildLinkMap'
+import { buildLinkMap } from './buildLinkMap'
 import { writeToAssets } from './utils'
 import { wikilinksTransformer } from './wikilinksTransformer'
+import { LinkMap } from './types'
 
-export const wikilinksPlugin = (config: EleventyConfig, options = {}) => {
+export const wikilinksPlugin = (config: EleventyConfig) => {
   let linkMap: LinkMap = {}
   config.addCollection('linkMap', (collectionsApi) => {
     linkMap = buildLinkMap(

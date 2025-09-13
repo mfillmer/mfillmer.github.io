@@ -43,7 +43,7 @@ export const GraphView: React.FC = () => {
       .forceSimulation(nodes)
       .force(
         'link',
-        d3.forceLink(links).id((d: any) => d.id),
+        d3.forceLink(links).id((d) => d.id),
       )
       .force('charge', d3.forceManyBody())
       .force('center', d3.forceCenter(200, 200))

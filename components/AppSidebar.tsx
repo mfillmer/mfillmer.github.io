@@ -1,7 +1,5 @@
-import { navigate } from '@/lib/utils'
 import { Brain, Hammer, Home } from 'lucide-react'
-import React, { useEffect, useState } from 'react'
-import { Button } from './ui/button'
+import React from 'react'
 import {
   Sidebar,
   SidebarContent,
@@ -9,12 +7,10 @@ import {
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
-  SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
 } from './ui/sidebar'
-import { Menubar } from './ui/menubar'
 
 const items = [
   {

@@ -1,13 +1,13 @@
 import { fn } from 'storybook/test'
-import { Button } from '../components/ui/atoms/Button.11ty'
 import React from 'react'
+import { Button } from '../components/ui/button'
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
   title: 'Example/Button',
   tags: ['autodocs'],
-  render: ({ label, ...args }) => {
-    return <Button text={label} />
+  render: ({ label }) => {
+    return <Button>{label}</Button>
   },
   argTypes: {
     backgroundColor: { control: 'color' },

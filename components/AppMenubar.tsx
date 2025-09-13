@@ -1,22 +1,8 @@
-import {
-  Menubar,
-  MenubarSeparator,
-  MenubarItem,
-  MenubarContent,
-  MenubarTrigger,
-  MenubarShortcut,
-  MenubarMenu,
-} from './ui/menubar'
+import { Home } from 'lucide-react'
 import React from 'react'
-import {
-  NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuLink,
-} from './ui/navigation-menu'
-import { Home, Link } from 'lucide-react'
-import { Button } from './ui/button'
 import { navigate } from '../lib/utils'
 import { Pagefind } from './Pagefind'
+import { Button } from './ui/button'
 
 export function AppMenubar() {
   return (

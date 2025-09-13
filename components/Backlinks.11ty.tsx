@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
-import { EleventyData } from './eleventyTypes.11ty'
+import React from 'react'
 import { twMerge } from 'tailwind-merge'
 import { LinkEntry, LinkMap } from '../lib/wikilinks/types'
+import { EleventyData } from './eleventyTypes.11ty'
 
 const Link = (props: LinkEntry) => (
   <li>
