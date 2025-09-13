@@ -1,22 +1,30 @@
-class GraphView extends HTMLDivElement {
-  constructor() {
-    super();
-    this.attachShadow({ mode: "open" });
+import React, { useEffect, useRef } from "react";
+import * as d3 from "d3";
+
+interface LinkMap {
+  [key: string]: {
+    target: string;
+    label: string;
+    outboundLinks: {
+      target: string;
+    }[];
+  };
+}
+
+export const GraphView: React.FC = () => {
+  const svgRef = useRef<SVGSVGElement>(null);
+
+  useEffect(() => {
     fetch("/linkMap.json")
       .then((response) => response.json())
-      .then((data) => {
-        const graph = document.getElementById("graph");
-        graph.render(data);
+      .then((data: LinkMap) => {
+        if (svgRef.current) {
+          renderGraph(data, svgRef.current);
+        }
       });
-  }
+  }, []);
 
-  connectedCallback() {
-    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    this.shadowRoot.appendChild(svg);
-    this.svg = svg;
-  }
-
-  render(linkMap) {
+  const renderGraph = (linkMap: LinkMap, svgElement: SVGSVGElement) => {
     const nodes = Object.values(linkMap).map((item) => ({
       id: item.target,
       ...item,
@@ -35,12 +43,12 @@ class GraphView extends HTMLDivElement {
       .forceSimulation(nodes)
       .force(
         "link",
-        d3.forceLink(links).id((d) => d.id)
+        d3.forceLink(links).id((d: any) => d.id)
       )
       .force("charge", d3.forceManyBody())
       .force("center", d3.forceCenter(200, 200));
 
-    const svg = d3.select(this.svg).attr("width", 400).attr("height", 400);
+    const svg = d3.select(svgElement).attr("width", 400).attr("height", 400);
 
     const link = svg
       .append("g")
@@ -49,7 +57,7 @@ class GraphView extends HTMLDivElement {
       .selectAll("line")
       .data(links)
       .join("line")
-      .attr("stroke-width", (d) => Math.sqrt(d.value));
+      .attr("stroke-width", (d: any) => Math.sqrt(d.value));
 
     const node = svg.append("g").selectAll("g").data(nodes).join("g");
 
@@ -62,22 +70,25 @@ class GraphView extends HTMLDivElement {
 
     node
       .append("text")
-      .text((d) => d.label)
+      .text((d: any) => d.label)
       .attr("x", 12)
       .attr("y", 3);
 
-    node.on("click", (_, data) => (document.location.pathname = data.target));
+    node.on(
+      "click",
+      (_, data: any) => (document.location.pathname = data.target)
+    );
 
     simulation.on("tick", () => {
       link
-        .attr("x1", (d) => d.source.x)
-        .attr("y1", (d) => d.source.y)
-        .attr("x2", (d) => d.target.x)
-        .attr("y2", (d) => d.target.y);
+        .attr("x1", (d: any) => d.source.x)
+        .attr("y1", (d: any) => d.source.y)
+        .attr("x2", (d: any) => d.target.x)
+        .attr("y2", (d: any) => d.target.y);
 
-      node.attr("transform", (d) => `translate(${d.x},${d.y})`);
+      node.attr("transform", (d: any) => `translate(${d.x},${d.y})`);
     });
-  }
-}
+  };
 
-customElements.define("graph-view", GraphView, { extends: "div" });
+  return <svg ref={svgRef}></svg>;
+};
