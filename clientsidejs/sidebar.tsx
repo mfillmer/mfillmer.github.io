@@ -9,7 +9,7 @@ if (domNode) {
   root.render(
     <SidebarProvider>
       <AppSidebar />
-      <SidebarTrigger />
+      <SidebarTrigger className="ml-1.5" />
     </SidebarProvider>
   );
 

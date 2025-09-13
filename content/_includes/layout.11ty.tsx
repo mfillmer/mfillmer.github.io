@@ -23,7 +23,7 @@ const Layout = (props: EleventyData) => {
         >
           <Button
             variant="ghost"
-            className="flex items-center w-1/5 cursor-pointer"
+            className="flex items-center justify-start w-1/5 cursor-pointer"
           >
             <Home />
             <h2 className="hidden md:inline">My Digital Playground</h2>

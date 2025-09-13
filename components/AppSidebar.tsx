@@ -38,7 +38,7 @@ export function AppSidebar() {
     <Sidebar className="max-w-64 top-menubar-height-mobile md:top-menubar-height">
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Content</SidebarGroupLabel>{" "}
+          <SidebarGroupLabel>Content</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (
