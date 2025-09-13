@@ -1,1 +1,1 @@
-module.exports = "layout.11ty.tsx";
+module.exports = 'layout.11ty.tsx'

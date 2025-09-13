@@ -1,51 +1,51 @@
-import { fn } from "storybook/test";
-import { Button } from "../components/ui/atoms/Button.11ty";
-import React from "react";
+import { fn } from 'storybook/test'
+import { Button } from '../components/ui/atoms/Button.11ty'
+import React from 'react'
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
-  title: "Example/Button",
-  tags: ["autodocs"],
+  title: 'Example/Button',
+  tags: ['autodocs'],
   render: ({ label, ...args }) => {
-    return <Button text={label} />;
+    return <Button text={label} />
   },
   argTypes: {
-    backgroundColor: { control: "color" },
-    label: { control: "text" },
-    onClick: { action: "onClick" },
-    primary: { control: "boolean" },
+    backgroundColor: { control: 'color' },
+    label: { control: 'text' },
+    onClick: { action: 'onClick' },
+    primary: { control: 'boolean' },
     size: {
-      control: { type: "select" },
-      options: ["small", "medium", "large"],
+      control: { type: 'select' },
+      options: ['small', 'medium', 'large'],
     },
   },
   args: { onClick: fn() },
-};
+}
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Primary = {
   args: {
     primary: true,
-    label: "Button",
+    label: 'Button',
   },
-};
+}
 
 export const Secondary = {
   args: {
-    label: "Button",
+    label: 'Button',
   },
-};
+}
 
 export const Large = {
   args: {
-    size: "large",
-    label: "Button",
+    size: 'large',
+    label: 'Button',
   },
-};
+}
 
 export const Small = {
   args: {
-    size: "small",
-    label: "Button",
+    size: 'small',
+    label: 'Button',
   },
-};
+}

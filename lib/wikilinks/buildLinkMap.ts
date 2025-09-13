@@ -1,33 +1,33 @@
-import { EleventySuppliedData } from "11ty.ts";
-import { getLinkEntries } from "./parseWikiLinksFromItemContent";
-import { LinkMap } from "./types";
+import { EleventySuppliedData } from '11ty.ts'
+import { getLinkEntries } from './parseWikiLinksFromItemContent'
+import { LinkMap } from './types'
 
 export const buildLinkMap = (collectionItems: EleventySuppliedData[]) => {
-  const linkMap = initializeLinkMap(collectionItems);
+  const linkMap = initializeLinkMap(collectionItems)
 
   for (const item of collectionItems) {
-    const currentLinkMapEntry = linkMap[item.filePathStem];
+    const currentLinkMapEntry = linkMap[item.filePathStem]
 
-    const linkEntries = getLinkEntries(item, linkMap);
+    const linkEntries = getLinkEntries(item, linkMap)
 
-    currentLinkMapEntry.outboundLinks = linkEntries;
+    currentLinkMapEntry.outboundLinks = linkEntries
 
     linkEntries.forEach((link) => {
-      const targetLinkEntry = linkMap[link.target];
+      const targetLinkEntry = linkMap[link.target]
       if (targetLinkEntry) {
         targetLinkEntry.inboundLinks[item.filePathStem] = {
           label: item.fileSlug,
           target: item.filePathStem,
-        };
+        }
       }
-    });
+    })
   }
 
-  return linkMap;
-};
+  return linkMap
+}
 
 const initializeLinkMap = (
-  collectionItems: EleventySuppliedData[]
+  collectionItems: EleventySuppliedData[],
 ): LinkMap => {
   return collectionItems
     .map((item) => ({
@@ -41,6 +41,6 @@ const initializeLinkMap = (
         ...map,
         [item.target]: item,
       }),
-      {}
-    );
-};
+      {},
+    )
+}
