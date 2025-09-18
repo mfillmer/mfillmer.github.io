@@ -56,7 +56,7 @@ export function AppSidebar() {
             <SidebarMenu>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
-                  <a href='/dynamic/graph/'>
+                  <a href='/dynamic/graph-view/'>
                     <span>Graph view</span>
                   </a>
                 </SidebarMenuButton>
