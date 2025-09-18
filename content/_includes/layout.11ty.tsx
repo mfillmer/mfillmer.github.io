@@ -39,11 +39,9 @@ const Layout = (props: EleventyData) => {
             data-pagefind-body
             dangerouslySetInnerHTML={{ __html: props.content }}
           ></article>
-          <div className='col-start-3 row-start-1 overflow-hidden xl:px-2 xl:py-4 xl:space-y-8 xl:border-l xl:border-gray-200 xl:my-4'>
+          <div className='col-start-3 row-start-1 overflow-hidden xl:p-4 xl:space-y-8 xl:border-l xl:border-gray-200 xl:my-4'>
             <div className='hidden xl:block'>
               <Backlinks {...props} />
-
-              <div id='graphview'></div>
             </div>
           </div>
         </div>

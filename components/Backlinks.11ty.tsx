@@ -19,7 +19,9 @@ const LinkList = (props: { title: string; links?: LinkEntry[] }) => (
         ))}
       </ul>
     ) : (
-      <span className='italic'>No entries</span>
+      <ul>
+        <li className='italic'>No entries</li>
+      </ul>
     )}
   </>
 )
@@ -32,6 +34,7 @@ export const Backlinks = (props: EleventyData & { className?: string }) => {
 
   return (
     <div className={twMerge('prose', props.className)}>
+      <h2>Backlinks</h2>
       <LinkList title='Outgoing Links' links={currentLink?.outboundLinks} />
       <LinkList
         title='Incoming Links'
