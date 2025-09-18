@@ -39,7 +39,7 @@ const renderGraph = (linkMap: LinkMap, svgElement: SVGSVGElement) => {
         .id((d) => d.id),
     )
     .force('charge', d3.forceManyBody().strength(-5))
-    .force('collide', d3.forceCollide().radius(15))
+    .force('collide', d3.forceCollide().radius(30))
     .velocityDecay(0.1)
     .force(
       'center',

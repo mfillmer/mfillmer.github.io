@@ -1,4 +1,8 @@
 # Design
 
-I want to build an atomic design system. For this i will make use of [[storybook]].
-But, to make this happen, I need the right component framework that works both on client and server.
+At the start of this project, I wanted to build an atomic design system and rely on [[storybook]].
+To realize this, i needed to use the right tech stack, which works at buildtime as well as at runtime.
+
+I started with webcomponents, but soon switched to react (see [React vs Webcomponents](react-over-webcomponents)), where I also started to use [[shadcn]].
+
+With shadcn setup, I currently see no benefit in setting up a design system or work with storybook.

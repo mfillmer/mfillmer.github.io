@@ -7,7 +7,7 @@
     - [x] Markdown Links Converter
     - [x] Wikilinks Converter
     - [ ] Markdown todo
-    - [?] Graph View
+    - [x] Graph View
     - [x] Pagefind
     - [x] Sidebar
     - [x] Backlinks

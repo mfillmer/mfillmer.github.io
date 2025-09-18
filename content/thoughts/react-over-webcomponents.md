@@ -1,6 +1,6 @@
 # React vs Webcomponents
 
-When using a static site generator like [Eleventy](eleventy.md), it is not an obvious choice to also use a JS-Framework to build the site. I first tried to just use what eleventy already offers out of the box, like full page navigation, Markdown, CSS, Templating and client side JS and fulltext search via [[pagefind]] (which is just great).
+When using a static site generator like [Eleventy](eleventy), it is not an obvious choice to also use a JS-Framework to build the site. I first tried to just use what eleventy already offers out of the box, like full page navigation, Markdown, CSS, Templating and client side JS and fulltext search via [[pagefind]] (which is just great).
 
 But especially the JavaScript part gets messy real quickly, if it is not organized in a thoughtful manner.
 Typically, you want to organize your JS inside components nowadays, and [[Webcomponents]] are a convenient way of doing so, as they are widely available and rely on plain JavaScript. [There is also a Plugin for Webcomponents for eleventy](https://www.11ty.dev/docs/languages/webc/).

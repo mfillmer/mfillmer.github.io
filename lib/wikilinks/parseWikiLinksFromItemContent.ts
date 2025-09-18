@@ -40,8 +40,8 @@ export const parseHtmlLinks = (markdownContent: string): LinkEntry[] => {
     const match = linkRegex.exec(link)
     if (match?.length === 3) {
       return {
-        label: match[1],
-        target: match[2],
+        target: match[1],
+        label: match[2],
       }
     } else {
       consoleWarn(link, ...(match ?? []))

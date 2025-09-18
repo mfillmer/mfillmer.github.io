@@ -1,7 +1,10 @@
 import { EleventyConfig } from '11ty.ts'
 import { buildLinkMap } from './buildLinkMap'
 import { writeToAssets } from './utils'
-import { wikilinksTransformer } from './wikilinksTransformer'
+import {
+  removeFileExtensionsFromLinks,
+  wikilinksTransformer,
+} from './wikilinksTransformer'
 import { LinkMap } from './types'
 
 export const wikilinksPlugin = (config: EleventyConfig) => {
@@ -15,6 +18,7 @@ export const wikilinksPlugin = (config: EleventyConfig) => {
   })
 
   config.addTransform('wikilinks', wikilinksTransformer())
+  config.addTransform('fileExtensions', removeFileExtensionsFromLinks)
 
   return config
 }
