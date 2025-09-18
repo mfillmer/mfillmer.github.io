@@ -35,7 +35,7 @@ const Layout = (props: EleventyData) => {
             <div id='sidebar'>Sidebar</div>
           </div>
           <article
-            className='min-w-0 col-start-2 row-start-1 px-2 py-4 prose lg:prose-lg xl:prose-xl'
+            className='min-w-0 col-start-2 row-start-1 px-2 pt-12 prose md:pt-8 lg:prose-lg xl:prose-xl'
             data-pagefind-body
             dangerouslySetInnerHTML={{ __html: props.content }}
           ></article>
