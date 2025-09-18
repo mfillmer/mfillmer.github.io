@@ -32,10 +32,15 @@ const renderGraph = (linkMap: LinkMap, svgElement: SVGSVGElement) => {
     .forceSimulation(nodes)
     .force(
       'link',
-      d3.forceLink(links).id((d) => d.id),
+      d3
+        .forceLink(links)
+        .distance(100)
+        .strength(0.1)
+        .id((d) => d.id),
     )
-    .force('charge', d3.forceManyBody().strength(-20))
-    .alpha(2)
+    .force('charge', d3.forceManyBody().strength(-5))
+    .force('collide', d3.forceCollide().radius(15))
+    .velocityDecay(0.1)
     .force(
       'center',
       d3.forceCenter(svgBoundingBox.width / 2, svgBoundingBox.height / 2),
@@ -45,8 +50,11 @@ const renderGraph = (linkMap: LinkMap, svgElement: SVGSVGElement) => {
     .select(svgElement)
     .attr('width', svgBoundingBox.width)
     .attr('height', svgBoundingBox.height)
+    .attr('viewBox', [0, 0, svgBoundingBox.width, svgBoundingBox.height])
 
-  const link = svg
+  const container = svg.append('g')
+
+  const link = container
     .append('g')
     .attr('stroke', '#999')
     .attr('stroke-opacity', 0.6)
@@ -55,7 +63,36 @@ const renderGraph = (linkMap: LinkMap, svgElement: SVGSVGElement) => {
     .join('line')
     .attr('stroke-width', (d: any) => Math.sqrt(d.value))
 
-  const node = svg.append('g').selectAll('g').data(nodes).join('g')
+  const node = container.append('g').selectAll('g').data(nodes).join('g')
+
+  function dragstarted(event: any) {
+    if (!event.active) simulation.alphaTarget(0.3).restart()
+    event.subject.fx = event.subject.x
+    event.subject.fy = event.subject.y
+  }
+
+  function dragged(event: any) {
+    event.subject.fx = event.x
+    event.subject.fy = event.y
+  }
+
+  function dragended(event: any) {
+    if (!event.active) simulation.alphaTarget(0)
+    event.subject.fx = null
+    event.subject.fy = null
+  }
+
+  node.call(
+    d3
+      .drag()
+      .on('start', dragstarted)
+      .on('drag', dragged)
+      .on('end', dragended) as any,
+  )
+
+  node.on('mouseover', function () {
+    d3.select(this).raise()
+  })
 
   node
     .append('circle')
@@ -69,8 +106,22 @@ const renderGraph = (linkMap: LinkMap, svgElement: SVGSVGElement) => {
     .text((d: any) => d.label)
     .attr('x', 12)
     .attr('y', 3)
+    .attr('class', 'hover:underline cursor-pointer')
 
   node.on('click', (_, data: any) => (document.location.pathname = data.target))
+
+  svg.call(
+    d3
+      .zoom()
+      .extent([
+        [0, 0],
+        [svgBoundingBox.width, svgBoundingBox.height],
+      ])
+      .scaleExtent([0.5, 8])
+      .on('zoom', ({ transform }) => {
+        container.attr('transform', transform)
+      }) as any,
+  )
 
   simulation.on('tick', () => {
     link

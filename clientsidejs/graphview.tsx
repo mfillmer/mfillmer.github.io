@@ -9,4 +9,3 @@ if (domNode) {
 
   console.info('Initialized graphview')
 }
-p
