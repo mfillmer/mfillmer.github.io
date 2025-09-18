@@ -2,6 +2,7 @@ import React from 'react'
 import { twMerge } from 'tailwind-merge'
 import { LinkEntry, LinkMap } from '../lib/wikilinks/types'
 import { EleventyData } from './eleventyTypes.11ty'
+import { addTrailingSlash } from '../lib/wikilinks/utils'
 
 const Link = (props: LinkEntry) => (
   <li>
@@ -27,7 +28,7 @@ const LinkList = (props: { title: string; links?: LinkEntry[] }) => (
 )
 
 export const Backlinks = (props: EleventyData & { className?: string }) => {
-  const linkMapKey = props.page.filePathStem
+  const linkMapKey = addTrailingSlash(props.page.filePathStem)
   const linkMap: LinkMap | undefined = props.collections.linkMap
 
   const currentLink = linkMap?.[linkMapKey]

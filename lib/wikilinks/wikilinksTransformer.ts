@@ -1,4 +1,4 @@
-import { loadFromAssets } from './utils'
+import { loadFromAssets, slugify } from './utils'
 import {
   NOT_FOUND_PAGE_PATH,
   parseWikiLinks,
@@ -13,7 +13,7 @@ export const wikilinksTransformer = () => (content: string) => {
 
   for (const slug of wikiLinkSlugs) {
     const linkMapEntry = Object.values(linkMap).find(
-      (mapItem) => mapItem.label === slug,
+      (mapItem) => slugify(mapItem.label) === slugify(slug),
     )
     const href = linkMapEntry?.target || NOT_FOUND_PAGE_PATH
     consoleLog(`transforming [[${slug}]], set target to ${href}`)

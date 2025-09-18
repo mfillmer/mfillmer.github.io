@@ -1,8 +1,8 @@
 import { EleventySuppliedData } from '11ty.ts'
 import { LinkEntry, LinkMap } from './types'
-import { consoleWarn } from './utils'
+import { addTrailingSlash, consoleWarn, slugify } from './utils'
 
-export const NOT_FOUND_PAGE_PATH = '/not-found'
+export const NOT_FOUND_PAGE_PATH = '/not-found/'
 
 export const parseWikiLinks = (markdownContent: string) => {
   const wikilinkRegExp = /(?<!!)\[\[([^|]+?)(\|([\s\S]+?))?\]\]/g
@@ -63,8 +63,10 @@ export const getLinkEntries = (
 const extendSlugsByPath = (slugs: string[], linkMap: LinkMap): LinkEntry[] => {
   return slugs.map((slug) => ({
     label: slug,
-    target:
-      Object.values(linkMap).find((linkEntry) => linkEntry.label === slug)
-        ?.target || NOT_FOUND_PAGE_PATH,
+    target: addTrailingSlash(
+      Object.values(linkMap).find(
+        (linkEntry) => slugify(linkEntry.label) === slugify(slug),
+      )?.target || NOT_FOUND_PAGE_PATH,
+    ),
   }))
 }

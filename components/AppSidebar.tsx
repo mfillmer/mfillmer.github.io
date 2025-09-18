@@ -20,12 +20,12 @@ const items = [
   },
   {
     title: 'Thoughts',
-    url: '/thoughts/index.html',
+    url: '/thoughts/',
     icon: Brain,
   },
   {
     title: 'How this Site is built',
-    url: '/site/how-this-site-is-built',
+    url: '/site/how-this-site-is-built/',
     icon: Hammer,
   },
 ]
@@ -56,7 +56,7 @@ export function AppSidebar() {
             <SidebarMenu>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
-                  <a href='/dynamic/graph'>
+                  <a href='/dynamic/graph/'>
                     <span>Graph view</span>
                   </a>
                 </SidebarMenuButton>

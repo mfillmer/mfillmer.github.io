@@ -1,12 +1,14 @@
 import { EleventySuppliedData } from '11ty.ts'
 import { getLinkEntries } from './parseWikiLinksFromItemContent'
 import { LinkMap } from './types'
+import { addTrailingSlash } from './utils'
 
 export const buildLinkMap = (collectionItems: EleventySuppliedData[]) => {
   const linkMap = initializeLinkMap(collectionItems)
 
   for (const item of collectionItems) {
-    const currentLinkMapEntry = linkMap[item.filePathStem]
+    const itemFilePath = addTrailingSlash(item.filePathStem)
+    const currentLinkMapEntry = linkMap[itemFilePath]
 
     const linkEntries = getLinkEntries(item, linkMap)
 
@@ -15,9 +17,9 @@ export const buildLinkMap = (collectionItems: EleventySuppliedData[]) => {
     linkEntries.forEach((link) => {
       const targetLinkEntry = linkMap[link.target]
       if (targetLinkEntry) {
-        targetLinkEntry.inboundLinks[item.filePathStem] = {
-          label: item.fileSlug,
-          target: item.filePathStem,
+        targetLinkEntry.inboundLinks[itemFilePath] = {
+          label: item.fileSlug + ' > ' + link.label,
+          target: itemFilePath,
         }
       }
     })
@@ -32,7 +34,7 @@ const initializeLinkMap = (
   return collectionItems
     .map((item) => ({
       label: item.fileSlug,
-      target: item.filePathStem,
+      target: addTrailingSlash(item.filePathStem),
       outboundLinks: [],
       inboundLinks: {},
     }))

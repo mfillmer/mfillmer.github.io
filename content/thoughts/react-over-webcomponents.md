@@ -5,7 +5,7 @@ When using a static site generator like [Eleventy](eleventy.md), it is not an ob
 But especially the JavaScript part gets messy real quickly, if it is not organized in a thoughtful manner.
 Typically, you want to organize your JS inside components nowadays, and [[Webcomponents]] are a convenient way of doing so, as they are widely available and rely on plain JavaScript. [There is also a Plugin for Webcomponents for eleventy](https://www.11ty.dev/docs/languages/webc/).
 
-So I built some webcomponents, mainly for the pagefind part and a specific [[Graph View]], but I was also planning to play with [[Atomic Design]] Patterns and technologies like [[shadcn]]. I soon noticed some drawbacks, which weren't critical, but in sum made the experience with webcomponents unpleasant. Some of those points involved the lack of a local npm packages, which broke support for things like syntax highlighting or tailwind intellisense. Those would have surely been fixable, but I had no pressure on building this site and thus decided to try to get react with eleventy to work.
+So I built some webcomponents, mainly for the pagefind part and a specific [[Graph View]], but I was also planning to play with [[atomic design]] Patterns and technologies like [[shadcn]]. I soon noticed some drawbacks, which weren't critical, but in sum made the experience with webcomponents unpleasant. Some of those points involved the lack of a local npm packages, which broke support for things like syntax highlighting or tailwind intellisense. Those would have surely been fixable, but I had no pressure on building this site and thus decided to try to get react with eleventy to work.
 
 And long story short, it worked.
 

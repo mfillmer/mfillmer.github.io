@@ -12,3 +12,6 @@ export const writeToAssets = (json: object) =>
 export const loadFromAssets = (filename: string) => {
   return readFileSync('./_site/' + filename, 'utf-8')
 }
+export const addTrailingSlash = (str: string) =>
+  str.replace(/index$/, '').replace(/\/?$/, '/')
+export const slugify = (str: string) => str.toLowerCase().replaceAll(' ', '-')
